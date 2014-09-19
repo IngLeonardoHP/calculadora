@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<head><title>Calculadora de CCMITS C.A.</title>
+<meta charset="utf-8" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var x;
+	const sol=10;
+	x=$(document);
+	x.ready(inicio);
+	
+	function inicio(){
+		var x;
+		x=$("#imgbtn");
+		x.click(calcular);
+		x=$("#imgayd");
+		x.click(ayuda);
+		x=$("#ayuda");
+		x.hide();
+	}
+	
+	function calcular(){
+		var bombillos=(document.getElementById('bombillos').value*document.getElementById('bombillosw').value*document.getElementById('bombillosh').value);
+		var televisores=(document.getElementById('televisor').value*document.getElementById('televisorw').value*document.getElementById('televisorh').value);
+		var otros=(document.getElementById('otros').value*document.getElementById('otrosw').value*document.getElementById('otrosh').value);
+		var otrosn=(document.getElementById('otrosn').value*document.getElementById('otrosnw').value*document.getElementById('otrosnh').value);
+		var x=$("#pantalla").html((bombillos+televisores+otros+otrosn)/sol+"W");
+	}
+	
+	function ayuda(){
+		var x=$("#ayuda");
+		x.show(1000);
+	}
+	
+	function solonumero(evt){
+	var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+ 
+         return true;
+	}
+</script>
+<style type="text/css">
+	#contenedor{
+		position:absolute;
+		left:35%;
+		background-image: url(Calculadorasolar.jpg);
+		background-size:100%;
+		width:30%;
+		height:95%;
+	}
+	#teclas{
+		position:absolute;
+		width:100%;
+		top:48%;
+		color:#fff;
+		padding:5px;
+		overflow-y: scroll;
+		height:50%;
+	}
+	#imgbtn, #imgayd{
+		margin-left:70%;
+	}
+	.cantidad{
+		background:#fdc800;
+	}
+	.watts{
+		background:#176eac;
+	}
+	#pantalla{
+		position:absolute;
+		top:15%;
+		width:99%;
+		text-align:right;
+		font-size:400%;
+		background:#07A634;
+		color:#8BFBAB;
+		margin:1px;
+		height:20%;
+	}
+	#ayuda{
+		position:absolute;
+		left:65%;
+		height:90%;
+		width:30%;
+		overflow-y: scroll;
+		padding:2%;
+		text-align:justify;
+	}
+</style>
+<body>
+<div id="contenedor">
+	<div id="pantalla">
+	0
+	</div>
+	<div id="teclas">
+		<form>
+			<table id="tabla" border=1>
+				<tr><td><strong>Luz (Cantidad de bombillos):</strong></td><td><input type="text" id="bombillos" maxlength=3 size=3 class="cantidad" onkeypress="return solonumero(event)"/></td></tr>
+				<tr><td>Potencia</td><td><input type="text" id="bombillosw" maxlength=3 size=3 class="watts" onkeypress="return solonumero(event)"/>W<br>Horas por dia<input type="text" id="bombillosh" onkeypress="return solonumero(event)" maxlength=3 size=3/></td></tr>
+				<tr><td><strong>Televisor(es) (Cantidad de Televisor(es)):</strong></td><td><input type="text" onkeypress="return solonumero(event)" id="televisor" maxlength=2 size=2 class="cantidad"/><br/></td></tr>
+				<tr><td>Potencia</td><td><input type="text" id="televisorw" maxlength=3 size=3 class="watts" onkeypress="return solonumero(event)"/>W<br/>Horas por dia<input type="text" id="televisorh" maxlength=3 size=3 onkeypress="return solonumero(event)"/></td></tr>
+				<tr><td><strong><strong>Otros Consumidores Comunes (Cantidad de Ventilador, radios, etc.):</strong></td><td></strong><input type="text" onkeypress="return solonumero(event)" id="otros" maxlength=3 size=3 class="cantidad"/></td></tr>
+				<tr><td>Potencia</td><td><input type="text" id="otrosw" maxlength=5 size=5 class="watts" onkeypress="return solonumero(event)"/>W<br/>Horas por dia<input type="text" id="otrosh" maxlength=3 size=3 onkeypress="return solonumero(event)"/></td></tr>
+				<tr><td><strong><strong>Otros Consumidores No Comunes (Cantidad de Plancha, cargador, lapto, etc.):</strong></td><td></strong><input type="text" onkeypress="return solonumero(event)" id="otrosn" maxlength=3 size=3 class="cantidad"/></td></tr>
+				<tr><td>Potencia</td><td><input type="text" id="otrosnw" maxlength=5 size=5 class="watts" onkeypress="return solonumero(event)"/>W<br/>Horas por dia<input type="text" id="otrosnh" maxlength=3 size=3 onkeypress="return solonumero(event)"/></td></tr>
+			</table>
+			<img src="botoncalcular.jpg" width=100px height=70px id="imgbtn"/>
+			<img src="iconoayuda.jpg" width=100px height=70px id="imgayd"/>
+			<a href="www.google.com"><button name="aceptar" id="aceptar" type="button">Calculadora</button></a>
+		</form>
+	</div>
+</div>
+<div id="ayuda">
+	<h1>Bienvenido...</h1><br/>
+	<p>Esta calculadora está diseñada para determinar la cantidad de Watts que necesitas para 
+	Tus panales solares y así satisfacer todos los aparatos eléctricos presentes en tu Hogar, 
+	Dormitorio, Escritorio, Local, y demás.<br/><br/>
+	Puedes suministrar los datos que te pide el formulario de la calculadora para obtener tu resultado por ejemplo: <br/><br/>
+	Yo en mi Cochera tengo 4 Bombillos ahorradores, 1 radio y 1 ventilador y sabiendo que los bombillos tienen 40w y los uso
+	5 horas, el radio tiene 30w y lo uso 1 hora y el ventilador tiene 50w y lo uso 7 horas ¿Cuantos Watts necesito? <br/><br/>
+	
+	Solo con introducir esos datos obtengo la cantidad de Watts que necesito que tengan mis Paneles Solare.
+	</p>
+</div>
+</body>
+</html>
